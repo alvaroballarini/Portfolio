@@ -53,7 +53,7 @@ export default function Header({ showBorder = true }: { showBorder?: boolean } =
                         href="#contacto"
                         className="inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium text-neutral-900 bg-emerald-400 hover:bg-emerald-300 transition-colors"
                     >
-                        Contrátame
+                        Hablemos
                     </Link>
                     <ThemeToggle />
                 </nav>
@@ -83,7 +83,7 @@ export default function Header({ showBorder = true }: { showBorder?: boolean } =
                             href="#contacto"
                             className="inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-neutral-900 bg-emerald-400 hover:bg-emerald-300 transition-colors"
                         >
-                            Contrátame
+                            Hablemos
                         </Link>
                     </nav>
                 </div>

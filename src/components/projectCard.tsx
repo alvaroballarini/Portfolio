@@ -1,14 +1,22 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from 'lucide-react'
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Project } from "@/lib/project"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Project } from "@/lib/project";
 
-export default function ProjectCard({ project }: { project?: Project } = { project: undefined }) {
+export default function ProjectCard(
+  { project }: { project?: Project } = { project: undefined },
+) {
   const p =
     project ??
     ({
@@ -18,23 +26,28 @@ export default function ProjectCard({ project }: { project?: Project } = { proje
       image: "/demo-proyecto-web.png",
       tags: ["Next.js", "TypeScript"],
       links: { demo: "#", repo: "#" },
-    } satisfies Project)
+    } satisfies Project);
 
   return (
     <motion.div
       variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
       transition={{ duration: 0.35, ease: "easeOut" }}
     >
-      <Card className="overflow-hidden h-full flex flex-col border-white/10 bg-white/5 backdrop-blur">
-        <div className="relative aspect-[16/10] group">
+      <Card className="overflow-hidden h-full flex flex-col border-white/10 bg-white/5 backdrop-blur pt-0">
+        <div className="relative aspect-[20/10] group ">
           <Image
-            src={p.image || "/placeholder.svg?height=400&width=640&query=project%20screenshot"}
+            src={
+              p.image ||
+              "/placeholder.svg?height=400&width=640&query=project%20screenshot"
+            }
             alt={`Imagen del proyecto ${p.title}`}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-contain object-top transition-transform duration-500 group-hover:scale-105"
           />
+
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        </div>
+        </div>{" "}
         <CardHeader className="space-y-2">
           <CardTitle className="text-lg text-zinc-100">{p.title}</CardTitle>
           <p className="text-sm text-zinc-400">{p.description}</p>
@@ -42,7 +55,11 @@ export default function ProjectCard({ project }: { project?: Project } = { proje
         <CardContent className="pt-0">
           <div className="flex flex-wrap gap-2">
             {p.tags.map((t) => (
-              <Badge key={t} variant="secondary" className="border-emerald-500/20 text-emerald-300 bg-emerald-950/30">
+              <Badge
+                key={t}
+                variant="secondary"
+                className="border-emerald-500/20 text-emerald-300 bg-emerald-950/30"
+              >
                 {t}
               </Badge>
             ))}
@@ -79,5 +96,5 @@ export default function ProjectCard({ project }: { project?: Project } = { proje
         </CardFooter>
       </Card>
     </motion.div>
-  )
+  );
 }

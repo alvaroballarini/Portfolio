@@ -17,10 +17,12 @@ export const experiences: Experience[] = [
     startDate: "09/2022",
     endDate: undefined, // Presente
     description:
-      "Responsable de la creación y mantenimiento de aplicaciones industriales y Creación de App de Gestión de Órdenes de Trabajo, optimizando la experiencia del usuario.",
+      "Desarrollo y evolución de productos B2B y aplicaciones de gestión, desde el análisis de requerimientos y el diseño técnico hasta la entrega en producción.",
     achievements: [
-      "Desarrollo de aplicaciones híbridas con .NET y React, mejorando la eficiencia del equipo en un 30%",
-      "Lideré la migración de una aplicación legacy a Next.js 14, mejorando la experiencia de desarrollador",
+      "Optimicé esquemas, índices y consultas SQL, reduciendo aproximadamente un 50 % los tiempos de procesamiento.",
+      "Incorporé pruebas de integración en servicios y endpoints críticos, contribuyendo a reducir aproximadamente un 70 % los errores en producción.",
+      "Integré servicios modernos en Node.js y React con sistemas existentes en .NET.",
+      "Trabajé directamente con stakeholders para relevar necesidades, estimar desarrollo y entregar mejoras en iteraciones cortas.",
     ],
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "MySql", "Sqlite", ".NET", "Tailwind CSS"],
   },
