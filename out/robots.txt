@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://alvaro-ballarini-portfolio.devconsultar.chatgpt.site
+Sitemap: https://alvaro-ballarini-portfolio.devconsultar.chatgpt.site/sitemap.xml

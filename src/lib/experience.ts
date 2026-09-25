@@ -12,7 +12,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     company: "Consultar Srl",
-    position: "Desarrollador de software en .NET y Full Stack en React",
+    position: "Full Stack Developer",
     location: "Rosario, Argentina",
     startDate: "09/2022",
     endDate: undefined, // Presente
@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
       "Integré servicios modernos en Node.js y React con sistemas existentes en .NET.",
       "Trabajé directamente con stakeholders para relevar necesidades, estimar desarrollo y entregar mejoras en iteraciones cortas.",
     ],
-    technologies: ["React", "Next.js", "TypeScript", "Node.js", "MySql", "Sqlite", ".NET", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "MySQL", "SQLite", ".NET", "Tailwind CSS"],
   },
   {
     company: "Workana",
@@ -33,9 +33,9 @@ export const experiences: Experience[] = [
     startDate: "07/2021",
     endDate: "02/2022",
     description:
-      "Experiencia en la creación y mejora de páginas web utilizando tecnologías como React y TypeScript",
+      "Desarrollo y mejora de experiencias web para clientes remotos con React y TypeScript.",
     achievements: [
-      "Especializado en el desarrollo de landing pages y tiendas en línea basadas en React y JavaScript",
+      "Construí landing pages y tiendas online con foco en una experiencia clara y adaptable.",
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Jest"],
   },

@@ -1,223 +1,146 @@
-"use client";
-
-import { ArrowRight, Mail } from "lucide-react";
-import Section from "@/components/section";
-import SiteBackground from "../components/siteBackground";
-
+import { ArrowRight, ArrowUpRight, Check, Code2, Database, Github, Linkedin, Mail, ServerCog } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
-import ContactForm from "@/components/ContactForm";
-import Hero from "@/components/hero";
 import ExperienceCard from "@/components/experienceCard";
+import Hero from "@/components/hero";
+import ProjectCard from "@/components/projectCard";
+import Section from "@/components/section";
+import Header from "@/components/site-header";
 import { experiences } from "@/lib/experience";
 import { projects } from "@/lib/project";
-import ProjectCard from "@/components/projectCard";
-import { skills } from "@/lib/skills";
-import Header from "@/components/site-header";
+
+const featured = projects.find((project) => project.featured)!;
+const otherProjects = projects.filter((project) => !project.featured);
+
+const capabilities = [
+  {
+    icon: Code2,
+    title: "Producto frontend",
+    copy: "Interfaces con React y Next.js, arquitectura de componentes, estados claros y atención al rendimiento percibido.",
+    tech: "React · Next.js · TypeScript · Tailwind",
+  },
+  {
+    icon: ServerCog,
+    title: "Backend y APIs",
+    copy: "Servicios y APIs REST con reglas de negocio explícitas, validaciones y una integración cuidada con el frontend.",
+    tech: "Node.js · Express · Fastify · NestJS · .NET",
+  },
+  {
+    icon: Database,
+    title: "Datos y performance",
+    copy: "Modelado relacional, índices y consultas orientadas a reducir tiempos de proceso sin perder claridad ni precisión.",
+    tech: "PostgreSQL · SQLite · SQL · Prisma",
+  },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-dvh flex flex-col">
-      <SiteBackground />
+    <>
+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <Header />
-      <main className="flex-1">
+      <main id="contenido">
         <Hero />
-        <Section
-          id="sobre-mi"
-          title="Sobre mí"
-          subtitle="Conoce al desarrollador"
-        >
-          <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <p className="text-zinc-300">
-                Soy un desarrollador full‑stack con enfoque en construir
-                experiencias web rápidas, accesibles y bien diseñadas. Me
-                encanta trabajar con React, Next.js y TypeScript, y tengo
-                experiencia integrando APIs y servicios cloud.
-              </p>
-              <p className="text-zinc-300">
-                Disfruto transformar ideas en productos reales: desde el diseño
-                de la arquitectura hasta el despliegue y observabilidad. Aquí
-                encontrarás algunos de mis proyectos personales, donde exploro
-                nuevas tecnologías y buenas prácticas modernas.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((t) => (
-                  <Badge
-                    key={t}
-                    variant="secondary"
-                    className="border-emerald-500/20 text-emerald-300 bg-emerald-950/30"
-                  >
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex gap-3 pt-2">
-                <Link
-                  href="#proyectos"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-neutral-900 bg-emerald-400 hover:bg-emerald-300 transition-colors"
-                >
-                  Ver Proyectos <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="#contacto"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium border border-white/10 hover:bg-white/5 text-zinc-200 transition-colors"
-                >
-                  Contacto <Mail className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
+
+        <section className="trust-strip" aria-label="Perfil profesional resumido">
+          <div className="site-shell trust-grid">
+            <p>Experiencia de punta a punta</p>
+            <span>Análisis técnico</span><span>Arquitectura</span><span>Entrega en producción</span><span>Code reviews</span><span>Stakeholders</span>
           </div>
-        </Section>
-        <Section
-          id="experiencia"
-          title="Experiencia"
-          subtitle="Trayectoria profesional"
-        >
-          <motion.div
-            className="space-y-8"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.1 } },
-            }}
-          >
-            {experiences.map((exp, i) => (
-              <ExperienceCard key={i} experience={exp} />
-            ))}
-          </motion.div>
-        </Section>
+        </section>
 
         <Section
           id="proyectos"
-          title="Proyectos"
-          subtitle="Web apps personales"
+          eyebrow="01 · Proyecto destacado"
+          title="Trabajo que muestra cómo pienso, no solo qué tecnologías uso."
+          intro="Vaulty concentra diseño de producto, modelado de datos, backend, interfaz y automatización en un problema concreto."
         >
-          <motion.div
-            className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.08 } },
-            }}
-          >
-            {projects.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
-            ))}
-          </motion.div>
-          <div className="mt-8 text-center">
-            <Link
-              href="#contacto"
-              className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-neutral-900 bg-emerald-400 hover:bg-emerald-300 transition-colors"
-            >
-              ¿Te gusta lo que ves? Hablemos <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </Section>
-
-        <Section
-          id="habilidades"
-          title="Habilidades"
-          subtitle="Tecnologías con las que trabajo"
-        >
-          <motion.div
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.06 } },
-            }}
-          >
-            {skills.map((name) => (
-              <motion.div
-                key={name}
-                className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 p-3 text-sm text-zinc-200 backdrop-blur"
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  show: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
-                <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
-                <span>{name}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </Section>
-
-        <Section
-          id="contacto"
-          title="Contacto"
-          subtitle="¿Tienes una idea? Conectemos"
-        >
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <h3 className="text-xl font-semibold text-zinc-100">
-                Trabajemos juntos
-              </h3>
-              <p className="text-zinc-300">
-                Estoy abierto a propuestas Full Stack y desarrollo de productos
-                B2B. Estoy ansioso por escuchar tus ideas y explorar cómo
-                podemos colaborar para hacerlas realidad. ¡Hablemos!
-              </p>
-              <ul className="space-y-2 text-sm text-zinc-400">
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-emerald-400 rounded-full" />
-                  <a
-                    href="mailto:alvaroballarini03@gmail.com"
-                    className="hover:text-emerald-400 transition-colors"
-                  >
-                    alvaroballarini03@gmail.com
-                  </a>
-                </li>{" "}
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-emerald-400 rounded-full" />
-                  <a
-                    href="https://www.google.com/maps/place/Rosario"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-emerald-400 transition-colors"
-                  >
-                    Ubicación: Remoto / Híbrido
-                  </a>
-                </li>
+          <article className="featured-project">
+            <div className="featured-visual">
+              <Image src={featured.image} alt={featured.imageAlt} fill priority sizes="(max-width: 1000px) 100vw, 58vw" />
+              <div className="visual-caption"><span>Vaulty</span><span>Aplicación full stack</span></div>
+            </div>
+            <div className="featured-content">
+              <div className="project-meta"><span>{featured.status}</span><span>{featured.year}</span></div>
+              <h3>{featured.title}</h3>
+              <p className="featured-summary">{featured.summary}</p>
+              <div className="case-block">
+                <p className="case-label">El problema</p>
+                <p>{featured.problem}</p>
+              </div>
+              <div className="case-block">
+                <p className="case-label">La respuesta</p>
+                <p>{featured.solution}</p>
+              </div>
+              <ul className="feature-checks">
+                {featured.impact.map((item) => <li key={item}><Check aria-hidden="true" />{item}</li>)}
               </ul>
-            </motion.div>
-            <ProjectContactCard />
+              <div className="tag-list">{featured.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+              <div className="featured-actions">
+                <Link href="/proyectos/vaulty" className="button button-primary">Leer caso completo <ArrowRight aria-hidden="true" /></Link>
+                {featured.links.demo && <a href={featured.links.demo} target="_blank" rel="noreferrer" className="text-link">Ver producto <ArrowUpRight aria-hidden="true" /></a>}
+                <a href={featured.links.repo} target="_blank" rel="noreferrer" className="text-link"><Github aria-hidden="true" /> Código</a>
+              </div>
+            </div>
+          </article>
+
+          {otherProjects.length > 0 && (
+            <div className="other-projects">
+              <div className="subsection-heading"><p className="eyebrow">Más trabajo</p><h3>Otros proyectos</h3></div>
+              <div className="project-grid">{otherProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div>
+            </div>
+          )}
+        </Section>
+
+        <Section id="experiencia" eyebrow="02 · Experiencia" title="Resultados en sistemas reales." intro="Trabajo sobre todo el ciclo: entender el problema, proponer una solución, implementarla y sostenerla en producción." className="section-contrast">
+          <div className="experience-list">{experiences.map((experience) => <ExperienceCard key={`${experience.company}-${experience.startDate}`} experience={experience} />)}</div>
+        </Section>
+
+        <Section id="capacidades" eyebrow="03 · Capacidades" title="Un perfil full stack con profundidad en datos." intro="Puedo moverme entre producto, interfaz, servicios y base de datos sin perder de vista el resultado que necesita el negocio.">
+          <div className="capability-grid">
+            {capabilities.map(({ icon: Icon, title, copy, tech }) => (
+              <article className="capability-card" key={title}>
+                <Icon aria-hidden="true" /><h3>{title}</h3><p>{copy}</p><span>{tech}</span>
+              </article>
+            ))}
+          </div>
+          <div className="engineering-note">
+            <p className="eyebrow">También en el día a día</p>
+            <p>Testing con Jest/Vitest · Docker · CI/CD con GitHub Actions · estimación · code reviews · metodologías ágiles · mentoría</p>
           </div>
         </Section>
+
+        <Section id="perfil" eyebrow="04 · Perfil" title="Ingeniería con contexto de negocio." className="section-profile">
+          <div className="profile-grid">
+            <div className="profile-copy">
+              <p>Me especializo en construir y evolucionar productos B2B donde la confiabilidad, los datos y el rendimiento importan. Disfruto traducir requerimientos ambiguos en decisiones técnicas concretas y trabajar cerca de quienes usan o definen el producto.</p>
+              <p>Mi experiencia incluye integrar servicios modernos en Node.js y React con sistemas existentes en .NET, mejorar consultas SQL y elevar la estabilidad de flujos críticos mediante pruebas de integración.</p>
+            </div>
+            <dl className="profile-facts">
+              <div><dt>Base</dt><dd>Rosario, Argentina</dd></div>
+              <div><dt>Formación</dt><dd>Técnico Informático · Casa Salesiana San José</dd></div>
+              <div><dt>Idiomas</dt><dd>Español nativo · Inglés B1-B2 técnico</dd></div>
+              <div><dt>Interés</dt><dd>Productos B2B · Backend · Full stack</dd></div>
+            </dl>
+          </div>
+        </Section>
+
+        <section id="contacto" className="contact-section">
+          <div className="site-shell contact-card">
+            <div>
+              <p className="eyebrow">¿Hay un problema interesante por resolver?</p>
+              <h2>Hablemos de la próxima oportunidad.</h2>
+              <p>Estoy abierto a roles Full Stack y Backend donde pueda aportar en producto, datos y performance.</p>
+            </div>
+            <div className="contact-actions">
+              <a href="mailto:alvaroballarini03@gmail.com?subject=Oportunidad%20Full%20Stack" className="button button-primary"><Mail aria-hidden="true" /> Enviar email</a>
+              <a href="https://www.linkedin.com/in/alvaro-ballarini/" target="_blank" rel="noreferrer" className="button button-secondary"><Linkedin aria-hidden="true" /> LinkedIn</a>
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
-  );
-}
-function ProjectContactCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur"
-    >
-      <ContactForm />
-    </motion.div>
+      <footer className="site-footer">
+        <div className="site-shell"><p>Álvaro Ballarini · Full Stack Engineer</p><p>Rosario, Argentina · 2026</p></div>
+      </footer>
+    </>
   );
 }

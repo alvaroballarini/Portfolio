@@ -1,0 +1,17 @@
+import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "Álvaro Ballarini · Full Stack Engineer",
+    short_name: "Álvaro Ballarini",
+    description: "Portfolio profesional de Álvaro Ballarini.",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#070a0f",
+    theme_color: "#070a0f",
+    lang: "es-AR",
+    icons: [{ src: "/user.ico", sizes: "any", type: "image/x-icon" }],
+  };
+}
